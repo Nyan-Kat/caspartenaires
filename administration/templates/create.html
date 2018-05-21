@@ -1,0 +1,14 @@
+{% extends 'header.html' %}
+
+
+{%  block body %}
+<div class="container">
+    <h1>Création d'utilisateur</h1>
+
+    <form method ="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Création</button>
+    </form>
+</div>
+{% endblock %}

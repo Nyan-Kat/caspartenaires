@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+
+{% block content %}
+{#    <h2>{{ text }}</h2>#}
+    <div class="container">
+        <h1>Création d'un contrat</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Créer</button>
+            </form>
+
+    </div>
+
+{% endblock %}

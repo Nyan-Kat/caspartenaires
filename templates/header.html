@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>CAS Partenaires</title>
+	<meta charset="utf-8" />
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" type = "text/css"/>
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+</head>
+
+<body class="body" style="background-color:#f6f6f6">
+	<div class="container-fluid" style="min-height:95%; ">
+		<div class="row">
+			  <div class="col-sm-2">
+				  <br>
+					<a href="/contrat/"><img src={% static 'img/cas_logo.jpeg' %} class="responsive-img" style='max-height:70px; text-align: center;' alt="logo_cas"></a>
+			  </div>
+			  <div class="col-sm-10" style="text-align: center">
+				  <br>
+				  <h1>Site de gestion des contrats</h1>
+			  </div>
+		</div>
+        <hr>
+
+        {% block body %}
+
+        {% endblock %}
+    </div>
+</body>
+
+</html>
