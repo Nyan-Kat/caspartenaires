@@ -9,9 +9,13 @@ from django.contrib import admin
 
 class contratadmin(admin.ModelAdmin):
     class Meta:
-        model = contrat
+        model = Contrat
 
 
-admin.site.register(contrat, contratadmin)
-admin.site.register(type_mode_de_paiement, contratadmin)
-admin.site.register(type_date_de_paiement, contratadmin)
+admin.site.register(Contrat, contratadmin)
+admin.site.register(TypeModeDePaiement, contratadmin)
+admin.site.register(TypeDateDePaiement, contratadmin)
+admin.site.register(Produit, contratadmin)
+admin.site.register(TypeContrat, contratadmin)
+admin.site.register(CategorieProduit, contratadmin)
+admin.site.register(ZoneProduit, contratadmin)
