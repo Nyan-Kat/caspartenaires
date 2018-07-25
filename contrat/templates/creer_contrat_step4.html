@@ -2,12 +2,11 @@
 
 {% block content %}
     <div class="container">
-        <h1>Création d'un contrat - Etape 1</h1>
+        <h1>Création d'un contrat - Etape 2</h1>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Back</button>
-                <button type="submit">Suivant</button>
+                <button type="submit">Créer Contrat</button>
             </form>
     </div>
 

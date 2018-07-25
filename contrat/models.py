@@ -38,8 +38,10 @@ class Produit(models.Model):
     email_compagnie_assurance = models.EmailField()
     branche = models.CharField(max_length=120, null=True, blank=True)
     encaissement = models.CharField(max_length=120, null=True, blank=True)
-    profession = JSONField(null=True, blank=True, default='')
-    regime = JSONField(null=True, blank=True, default='')
+    profession = models.CharField(max_length=400, null=True, blank=True)
+    # (('ingenieur', 'ingenieur'), ('infirmier', 'infirmier'))
+    regime = models.CharField(max_length=400, null=True, blank=True)
+    # (('chomeur', 'chomeur'), ('employé', 'employé'), ('retraité', 'retraité'))
 
     condition_age_min = models.PositiveIntegerField(null=True, blank=True)
     condition_age_max = models.PositiveIntegerField(null=True, blank=True)
@@ -48,14 +50,16 @@ class Produit(models.Model):
     condition_age_min_enfant = models.PositiveIntegerField(null=True, blank=True)
     condition_age_max_enfant = models.PositiveIntegerField(null=True, blank=True)
     condition_regime = models.CharField(max_length=400, null=True, blank=True)
+    # ('chomeur', 'employé', 'retraité')
     condition_code_postal = models.CharField(max_length=400, null=True, blank=True)
+    # (01,02,03,04,05,06,10,11,12,75,76,91)
 
     def __unicode__(self):
         return self.nom
 
 
 class CategorieProduit(models.Model):
-    id_produit = models.ForeignKey(Produit, default='', on_delete=models.CASCADE)
+    produit = models.ForeignKey(Produit, default='', on_delete=models.CASCADE)
     nom = models.CharField(max_length=120, null=True, blank=True)
 
     def __unicode__(self):
@@ -108,10 +112,8 @@ class Contrat(models.Model):
     mode_de_paiement = models.CharField(max_length=120, null=True, blank=True)
     type_contrat = models.CharField(max_length=120, null=True, blank=True)
     produit = models.CharField(max_length=120, null=True, blank=True)
-    type_contrat = models.ForeignKey(TypeContrat, null=True, blank=True, default='', on_delete=models.CASCADE)
-    produit = models.ForeignKey(Produit, null=True, blank=True, default='', on_delete=models.CASCADE)
-    categorie_produit = models.ForeignKey(CategorieProduit, null=True, blank=True, default='', on_delete=models.CASCADE)
-    zone_produit = models.ForeignKey(ZoneProduit, null=True, blank=True, default='', on_delete=models.CASCADE)
+    categorie_produit = models.CharField(max_length=120, null=True, blank=True)
+    zone_produit = models.CharField(max_length=120, null=True, blank=True)
 
     def __unicode__(self):
         return "%s %s" % (self.prenom, self.nom)

@@ -3,11 +3,49 @@
 {% block content %}
     <div class="container">
         <h1>Création d'un contrat - Etape 2</h1>
-            <form method="post">
+            <form method="post" id="ContratForm2" novalidate>
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Créer Contrat</button>
+                <button type="submit">Suivant</button>
             </form>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    {#Update de la liste de produit sur changement de la liste de type de produit#}
+    $("#id_type_contrat").change(function () {
+      var url = "{% url 'contrat:ajax_load_produit' %}";  // get the url of the `load_cities` view
+      var type_contratId = $(this).val();  // get the selected country ID from the HTML input
+        console.log(url);
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'type_contrat': type_contratId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_produit").html(data);  // replace the contents of the city input with the data that came from the server
+            console.log(data)
+        }
+      });
+
+    });
+    {#Update de la liste de categorie_produit sur changement de la liste de produit#}
+    $("#id_produit").change(function () {
+      var url = "{% url 'contrat:ajax_load_categorie_produit' %}";
+      var produitId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'produit': produitId
+        },
+        success: function (data) {
+          $("#id_categorie_produit").html(data);
+        }
+      });
+
+    });
+    </script>
 
 {% endblock %}
